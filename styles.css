@@ -34,15 +34,18 @@ body {
 
 .playlist-card {
 	color: black;
-	background-image: url('assets/img/playlist.png');
+	/* background-image: url('assets/img/playlist.png'); */
 	background-size: cover;
 	background-position: center;
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	margin: 10px;
+	margin: 5px;
 	padding: 20px;
-	max-width: 100%;
 	text-align: center;
 	background-repeat: no-repeat;
-	flex: 1 0 25%;
+	flex: 1 0 15%;
+	max-width: 25%;
+}
+.playlist-card img{
+	max-width: 50%;
 }
