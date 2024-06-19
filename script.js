@@ -1,4 +1,4 @@
 let container = document.getElementById("playlist-card-container");
 
 
-fetch()
+fetch("/data/data.js")
