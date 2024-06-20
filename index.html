@@ -16,13 +16,23 @@
         <h1 class="head-text"> Music Playlist Explorer </h1>
     </header>
     <main id="playlist-card-container">
-        
+
     </main>
 
     <footer>
         <!-- Your footer content here -->
     </footer>
-    <script src="data/data.js"></script>
+    <div id="playlistModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 id="playlistName"></h1>
+            <img id="playlistImage" src="" alt="Playlist Image">
+            <p id="playlistLikes"></p>
+            <p id="playlistCreator"></p>
+            <div id="songlist-container"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
