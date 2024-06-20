@@ -52,10 +52,11 @@ var span = document.getElementsByClassName("close")[0];
 function openModal(playlist) {
   document.getElementById('playlistName').innerText = playlist.playlist_name;
   document.getElementById('playlistImage').src = playlist.playlist_art;
-  document.getElementById('playlistLikes').innerText = `Likes: ${playlist.likeCount}`;
+  document.getElementById('playlistLikes').innerHTML =  ` <p> <button id="likeId-${playlist.playlistID}" data-liked="false" >${playlist.likeCount} likes </button> </p>`;
   document.getElementById('playlistCreator').innerText = `Location: ${playlist.playlist_creator}`;
   createSongList(playlist.songs)
-  
+
+
   modal.style.display = "block";
 }
 
