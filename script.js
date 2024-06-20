@@ -31,8 +31,8 @@ function createPlaylistCard(playlist) {
   }
   card.className = 'playlist-card';
   let likes = document.createElement('p');
-   likes.id = `likes-${playlist.playlistID}`;
-  
+  likes.id = `likes-${playlist.playlistID}`;
+
   let numLikes = likedPlaylists[playlist.id] ? likedPlaylists[playlist.id] : 0;
   likes.textContent = 'Likes: ' + numLikes;
 
@@ -60,11 +60,17 @@ var modal = document.getElementById("playlistModal");
 var span = document.getElementsByClassName("close")[0];
 
 function openModal(playlist) {
+  let songs = playlist.songs
   document.getElementById('playlistName').innerText = playlist.playlist_name;
   document.getElementById('playlistImage').src = playlist.playlist_art;
+  document.getElementById(`shuffle`).addEventListener('click', (e) => {
+    e.preventDefault();
+     songs = createSongList(playlist.songs, true)
+  }
+  )
   document.getElementById('playlistLikes').innerHTML = ` <p> <button id="likeId-${playlist.playlistID}" data-liked="false" ><i class="fa fa-heart" style="font-size:40px;color:black; opacity: 0.25;"></i></button> </p>`;
   document.getElementById('playlistCreator').innerText = `Location: ${playlist.playlist_creator}`;
-  createSongList(playlist.songs)
+  createSongList(songs)
 
   if (likedPlaylists[playlist.playlistID]) {
     document.querySelector(`#likeId-${playlist.playlistID} i`).style.color = 'red';
@@ -77,10 +83,27 @@ function openModal(playlist) {
   modal.style.display = "block";
 }
 
-function createSongList(songs) {
+
+function shuffleSongs(songs) {
+  let currentIndex = songs.length;
+
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [songs[currentIndex], songs[randomIndex]] = [
+      songs[randomIndex], songs[currentIndex]];
+  }
+  return songs
+}
+
+function createSongList(songs, shuffle = false) {
   let songListContainer = document.getElementById("songlist-container");
   songListContainer.innerHTML = "";
-
+  if (shuffle === true) songs = shuffleSongs(songs);
   songs.forEach(song => {
     // Create song item container
     let songItem = document.createElement('div');
@@ -159,3 +182,4 @@ function toggleLike(id, playlistID) {
   }
   document.getElementById(`likes-${playlistID}`).textContent = 'Likes: ' + likedPlaylists[playlistID];
 }
+
